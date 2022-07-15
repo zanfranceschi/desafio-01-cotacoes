@@ -5,6 +5,8 @@ Para executar a imagem docker diretamente do dockerhub (sem precisar fazer build
 
 ```docker run --rm -p 8080:80 zanfranceschi/desafio-01-cotacoes```
 
+https://hub.docker.com/repository/docker/zanfranceschi/desafio-01-cotacoes
+
 
 Se preferir fazer o build da imagem, siga os passos à seguir.
 
