@@ -10,22 +10,17 @@ Para executar a [imagem docker](https://hub.docker.com/repository/docker/zanfran
 docker run --rm -p 8080:80 zanfranceschi/desafio-01-cotacoes
 ~~~
 
-
-
-
 Se preferir fazer o build da imagem, siga os passos à seguir.
 ~~~
 cd src/
 ~~~
-
 
 Para construir a imagem docker, execute:
 ~~~
 docker build -t desafio-01-cotacoes .
 ~~~
 
-
-Para executar a imagem, execute:
+Para executar um container, execute:
 ~~~
 docker run --rm -p 8080:80 desafio-01-cotacoes
 ~~~
