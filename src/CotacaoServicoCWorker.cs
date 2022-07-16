@@ -35,17 +35,22 @@ namespace DesafioCotacoes
                     try
                     {
                         _logger.LogInformation($"solicitação recebida: {solicitacao}");
-                        var content = JsonContent.Create(new { ok = "123" });
+                        var payload = new
+                        {
+                            cid = solicitacao.Cid,
+                            f = 1000,
+                            t = solicitacao.Tipo,
+                            v = _random.Next(1000, 4000 + 1)
+                        };
+                        var content = JsonContent.Create(payload);
                         var response = await _httpClient.PostAsync(solicitacao.Callback, content);
                         _logger.LogInformation($"sucesso no callback para {solicitacao}? {response.StatusCode}");
+                        _logger.LogInformation($"callback payload: {payload}");
                         ;
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex, $"erro ao fazer o callback com a solicitação {solicitacao}");
-                        _logger.LogInformation("====================================================");
-                        _logger.LogInformation("Provavelmente, você quer usar http://172.17.0.1:<porta> ou http://host.docker.internal:<porta> para que o docker acesse seu ambiente :)");
-                        _logger.LogInformation("====================================================");
+                        _logger.LogError(ex, $"*****\n\terro ao fazer o callback com a solicitação {solicitacao}");
                     }
                 }
 

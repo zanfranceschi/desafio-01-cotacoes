@@ -10,7 +10,9 @@ namespace DesafioCotacoes
         private readonly ILogger<CotacoesController> _logger;
         private readonly Random _random = new Random();
 
-        public CotacoesController(ConcurrentQueue<SolicitacaoCotacao> solicitacoes, ILogger<CotacoesController> logger)
+        public CotacoesController(
+            ConcurrentQueue<SolicitacaoCotacao> solicitacoes,
+            ILogger<CotacoesController> logger)
         {
             _solicitacoes = solicitacoes;
             _logger = logger;
@@ -18,29 +20,38 @@ namespace DesafioCotacoes
         }
 
         [HttpGet("/servico-a/cotacao")]
-        public IActionResult ServicoA()
+        public async Task<IActionResult> ServicoA()
         {
             if (Request.Query.ContainsKey("moeda") == false)
             {
-                return BadRequest(new { status = 422, erro = "Oh, no! Você precisa informar o parâmetro 'moeda'!" });
+                return BadRequest(new
+                {
+                    erro = "Oh, no! Você precisa informar o parâmetro 'moeda'!"
+                });
             }
+
+            // atrasado proposital
+            await Task.Delay(_random.Next(10, 3000));
 
             var moeda = Request.Query["moeda"].First();
 
-            return Ok(new { cotacao = _random.Next(1000, 7000 + 1) / 1000M, moeda = moeda });
+            return Ok(new { cotacao = _random.Next(1000, 7000 + 1) / 1000M, moeda = moeda, symbol = "💵" });
         }
 
         [HttpGet("/servico-b/cotacao")]
-        public IActionResult ServicoB()
+        public async Task<IActionResult> ServicoB()
         {
             if (Request.Query.ContainsKey("curr") == false)
             {
-                return BadRequest(new
+                return UnprocessableEntity(new
                 {
                     success = false,
-                    message = "Oh, no! Você precisa informar o parâmetro 'curr'!"
+                    message = "📣 Oh, no! Você precisa informar o parâmetro 'curr'!"
                 });
             }
+
+            // atrasado proposital
+            await Task.Delay(_random.Next(10, 3000));
 
             var curr = Request.Query["curr"].First();
 
@@ -55,30 +66,27 @@ namespace DesafioCotacoes
             });
         }
 
-        [HttpGet("/servico-c/cotacao")]
-        public IActionResult ServicoC()
+        [HttpPost("/servico-c/cotacao")]
+        public IActionResult ServicoC([FromBody] SolicitacaoCotacao solicitacao)
         {
-            var dica = "Provavelmente, você quer usar http://172.17.0.1:<porta> ou http://host.docker.internal:<porta> para que o docker acesse seu ambiente :)";
-
-            if (Request.Query.ContainsKey("callback") == false || Request.Query.ContainsKey("tipo") == false || Request.Query.ContainsKey("cid") == false)
+            if (solicitacao.Valida == false)
             {
                 return UnprocessableEntity(new
                 {
-                    erro = "Oh, no! Você precisa informar os parâmetros 'callback' com uma URL válida, 'tipo' para a moeda e 'cid' para o correlation id!",
-                    dica = dica
+                    mood = "⛔",
+                    erro = "Oh, no! Você precisa informar os parâmetros 'callback' com uma URL válida e 'tipo' para a moeda!",
+                    dica = "Provavelmente, você quer usar http://172.17.0.1:<porta> ou http://host.docker.internal:<porta> para que o docker acesse seu ambiente :)"
                 });
             }
 
-            var callback = Request.Query["callback"];
-            var tipo = Request.Query["tipo"];
-            var cid = Request.Query["cid"];
-
-            _solicitacoes.Enqueue(new SolicitacaoCotacao(callback, tipo, cid));
+            solicitacao.Cid = Guid.NewGuid().ToString();
+            _solicitacoes.Enqueue(solicitacao);
 
             return Accepted(new
             {
-                mensagem = $"Quando a cotação finalizar, uma requisição para {callback} será feita.",
-                dica = dica
+                mood = "✅",
+                cid = solicitacao.Cid,
+                mensagem = $"Quando a cotação finalizar, uma requisição para {solicitacao.Callback} será feita."
             });
         }
     }
