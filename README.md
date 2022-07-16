@@ -1,5 +1,5 @@
 # Desafio 01: Cotações
-Esse repositório faz parte do desafio disponível [nessa thread do twitter](http://localhost) e também [nesse post de dev.to](http://sss).
+Esse repositório faz parte do desafio disponível [nessa thread do twitter](https://twitter.com/zanfranceschi/status/1548344242010869763) e também [nesse post de dev.to](http://sss).
 
 Por favor, note que o código disponível aqui não tem qualidade de produção e não deveria ser usado para referência sobre como desenvolver uma API ou um mecanismo de callback.
 
