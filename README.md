@@ -126,3 +126,10 @@ HTTP 200
 ~~~
 
 A cotação do Serviço C só é levada em conta se houver um callback em até 5 segundos. Caso contrário, o processamento desiste da cotação desse serviço. Para a comunicação inproc/intra-threads, a biblioteca [NetMQ](https://github.com/zeromq/netmq) foi usada.
+
+## Resoluções da Comunidade
+
+Abaixo você encontra exemplos de resoluções criados pela comunidade:
+
+**JavaScript / Node.js**:
+- https://github.com/oieduardorabelo/hexchange - Usando os emissores de eventos [`node:events`](https://nodejs.org/api/events.html#awaiting-multiple-events-emitted-on-processnexttick) do Node.js para aguardar os dados do Serviço C.
