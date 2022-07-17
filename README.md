@@ -48,9 +48,9 @@ Resposta:
 ~~~
 HTTP 200
 {
-	"cotacao": 2.674,
-	"moeda": "USD",
-	"symbol": "💵"
+  "cotacao": 2.674,
+  "moeda": "USD",
+  "symbol": "💵"
 }
 ~~~
 
@@ -66,11 +66,11 @@ Resposta:
 ~~~
 HTTP 200
 {
-	"cotacao": {
-		"fator": 1000,
-		"currency": "x",
-		"valor": "1468"
-	}
+  "cotacao": {
+    "fator": 1000,
+    "currency": "x",
+    "valor": "1468"
+  }
 }
 ~~~
 
@@ -81,8 +81,8 @@ Requisição:
 ~~~
 POST http://localhost:8080/servico-c/cotacao
 {
-	"tipo": "EUR",
-	"callback": "http://172.17.0.1:3000"
+  "tipo": "EUR",
+  "callback": "http://172.17.0.1:3000"
 }
 ~~~
 
@@ -90,9 +90,9 @@ Resposta:
 ~~~
 HTTP 202
 {
-	"mood": "✅",
-	"cid": "74e3fb63-5621-46fd-85d1-56e4e9c04a3a",
-	"mensagem": "Quando a cotação finalizar, uma requisição para http://172.17.0.1:3000 será feita."
+  "mood": "✅",
+  "cid": "74e3fb63-5621-46fd-85d1-56e4e9c04a3a",
+  "mensagem": "Quando a cotação finalizar, uma requisição para http://172.17.0.1:3000 será feita."
 }
 ~~~
 
@@ -100,10 +100,10 @@ Requisição do Callback
 ~~~
 POST <URL informada em "callback" da requisição>
 {
-    "cid": "74e3fb63-5621-46fd-85d1-56e4e9c04a3a",
-    "f": 1000,
-    "t": "EUR",
-    "v": 3.675
+  "cid": "74e3fb63-5621-46fd-85d1-56e4e9c04a3a",
+  "f": 1000,
+  "t": "EUR",
+  "v": 3.675
 }
 ~~~
 
@@ -119,9 +119,9 @@ A resposta será algo como:
 ~~~
 HTTP 200
 {
-	"cotacao": 1.689,
-	"moeda": "EUR",
-	"comparativo": "BRL"
+  "cotacao": 1.689,
+  "moeda": "EUR",
+  "comparativo": "BRL"
 }
 ~~~
 
