@@ -133,3 +133,6 @@ Abaixo você encontra exemplos de resoluções criados pela comunidade:
 
 **JavaScript / Node.js**:
 - https://github.com/oieduardorabelo/hexchange - Usando os emissores de eventos [`node:events`](https://nodejs.org/api/events.html#awaiting-multiple-events-emitted-on-processnexttick) do Node.js para aguardar os dados do Serviço C.
+
+**Dart / Shelf**:
+- https://github.com/bmsrangel/desafio-01-cotacoes - Usando [Streams](https://api.dart.dev/stable/2.17.3/dart-async/StreamController-class.html) para aguardar os dados do Serviço C.
