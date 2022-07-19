@@ -136,3 +136,6 @@ Abaixo você encontra exemplos de resoluções criados pela comunidade:
 
 **Dart / Shelf**:
 - https://github.com/bmsrangel/desafio-01-cotacoes - Usando [Streams](https://api.dart.dev/stable/2.17.3/dart-async/StreamController-class.html) para aguardar os dados do Serviço C.
+
+**Kotlin / Springboot**:
+- https://github.com/fabiomaciel/cotacao-service - Usando [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) para aguardar os dados do Serviço C.
