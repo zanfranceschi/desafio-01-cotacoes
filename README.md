@@ -139,3 +139,6 @@ Abaixo você encontra exemplos de resoluções criados pela comunidade:
 
 **Kotlin / Springboot**:
 - https://github.com/fabiomaciel/cotacao-service - Usando [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) para aguardar os dados do Serviço C.
+
+**Deno / Typescript**:
+- https://github.com/devtorello/bexchange - Usando [Redis](https://github.com/denodrivers/redis) para salvar e acessar os dados do Serviço C, além de [Oak](https://github.com/oakserver/oak) para a construção das APIs e [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) para o consumo dos serviços disponibilizados.
