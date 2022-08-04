@@ -142,3 +142,6 @@ Abaixo você encontra exemplos de resoluções criados pela comunidade:
 
 **Deno / Typescript**:
 - https://github.com/devtorello/bexchange - Usando [Redis](https://github.com/denodrivers/redis) para salvar e acessar os dados do Serviço C, além de [Oak](https://github.com/oakserver/oak) para a construção das APIs e [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) para o consumo dos serviços disponibilizados.
+
+**Elixir / plug_cowboy**:
+- https://github.com/matgomes/exchange_challenge - Usando Elixir e plug_cowboy pra criar um server simples, usei um registry pra amarzenar o pid do beam process usando o cid e esperar uma mensagem através do webhook.
